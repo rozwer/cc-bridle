@@ -1,5 +1,6 @@
 # Claude Code harness state (session-specific)
 .claude/
+!.claude-plugin/
 
 # Internal planning & design docs
 docs/
