@@ -1,0 +1,24 @@
+{
+  "PreToolUse": [
+    {
+      "matcher": "Bash",
+      "command": "hooks/pre-tool.sh"
+    }
+  ],
+  "PostToolUse": [
+    {
+      "matcher": ".*",
+      "command": "hooks/post-tool.sh"
+    }
+  ],
+  "SessionStart": [
+    {
+      "command": "hooks/session.sh"
+    }
+  ],
+  "Setup": [
+    {
+      "command": "hooks/session.sh"
+    }
+  ]
+}

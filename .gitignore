@@ -1,0 +1,25 @@
+# Claude Code harness state (session-specific)
+.claude/
+
+# Internal planning & design docs
+docs/
+Plans.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node (in case of future dependencies)
+node_modules/
+npm-debug.log*
+
+# Temp
+*.tmp
+*.bak
