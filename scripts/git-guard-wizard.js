@@ -21,13 +21,42 @@ function saveConfig(cfg) {
 }
 
 const GUARDS = [
-  { key: 'block_force_push', label: '[1] force push ブロック (git push --force / -f)' },
-  { key: 'block_push_main', label: '[2] main/master への直接 push ブロック' },
-  { key: 'block_secret_files', label: '[3] 機密ファイルのステージングをブロック (.env, *.key 等)' },
-  { key: 'check_commit_message', label: '[4] コミットメッセージの Conventional Commits 検証' },
-  { key: 'block_large_files', label: '[5] 1MB 超ファイルのステージングをブロック' },
+  { key: 'block_force_push', label: 'force push ブロック (git push --force / -f)' },
+  { key: 'block_push_main', label: 'main/master への直接 push ブロック' },
+  { key: 'block_secret_files', label: '機密ファイルのステージングをブロック (.env, *.key 等)' },
+  { key: 'check_commit_message', label: 'コミットメッセージの Conventional Commits 検証' },
+  { key: 'block_large_files', label: '1MB 超ファイルのステージングをブロック' },
 ];
 
+// --- CLI mode: node git-guard-wizard.js --set key1=on,key2=off ---
+// --- Show mode: node git-guard-wizard.js --show ---
+const args = process.argv.slice(2);
+
+if (args.includes('--show')) {
+  const cfg = loadConfig();
+  const guard = cfg.git_guard || {};
+  console.log(JSON.stringify({ guards: GUARDS.map(g => ({ key: g.key, label: g.label, enabled: !!guard[g.key] })) }));
+  process.exit(0);
+}
+
+if (args.includes('--set')) {
+  const setArg = args[args.indexOf('--set') + 1];
+  if (!setArg) { console.error('Usage: --set key1=on,key2=off'); process.exit(1); }
+  const cfg = loadConfig();
+  const guard = cfg.git_guard || {};
+  for (const pair of setArg.split(',')) {
+    const [k, v] = pair.split('=');
+    if (GUARDS.some(g => g.key === k)) {
+      guard[k] = v === 'on' || v === 'true' || v === 'yes';
+    }
+  }
+  cfg.git_guard = guard;
+  saveConfig(cfg);
+  console.log(JSON.stringify({ saved: true, git_guard: guard }));
+  process.exit(0);
+}
+
+// --- Interactive mode (terminal only) ---
 async function run() {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   const question = (q) => new Promise(resolve => rl.question(q, resolve));

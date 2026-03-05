@@ -8,23 +8,42 @@ triggers:
 
 ## What this skill does
 
-Runs the git-guard wizard to configure protections for Claude Code's git operations.
+Configures protections for Claude Code's git operations.
 
 These guards only apply when Claude Code executes git commands via the Bash tool.
 Your own manual git commands (in terminal) are NOT affected.
 
-## Usage
+## Procedure
 
-Run: `node scripts/git-guard-wizard.js`
+### Step 1: Show current status
 
-After configuration, the settings are saved to `~/.claude/cc-bridle/config.json` under `git_guard`.
+Run: `node ${CLAUDE_PLUGIN_ROOT}/scripts/git-guard-wizard.js --show`
 
-## Available Guards
+This outputs JSON with all guard keys and their current enabled state.
 
-1. **force push block** — Prevents `git push --force` / `-f`
-2. **main/master push block** — Prevents direct push to main or master branch
-3. **secret files block** — Prevents staging `.env`, `*.key`, `*.pem` files
-4. **Conventional Commits** — Validates commit message format (feat:, fix:, etc.)
-5. **large file block** — Prevents staging files over 1MB
+### Step 2: Ask the user
 
-All guards are OFF by default. Enable only what you need.
+Use AskUserQuestion with multiSelect=true to let the user pick which guards to enable.
+
+Available guards:
+- `block_force_push` — force push ブロック (git push --force / -f)
+- `block_push_main` — main/master への直接 push ブロック
+- `block_secret_files` — 機密ファイルのステージングをブロック (.env, *.key 等)
+- `check_commit_message` — Conventional Commits 検証
+- `block_large_files` — 1MB 超ファイルのステージングをブロック
+
+Show current status to the user. Present a single multiSelect question with these as options.
+Note: AskUserQuestion supports max 4 options, so split into 2 questions if needed
+(e.g. question 1: force_push, push_main, secret_files; question 2: commit_message, large_files).
+
+### Step 3: Apply settings
+
+Build a comma-separated `key=on` / `key=off` string from user selections and run:
+
+```
+node ${CLAUDE_PLUGIN_ROOT}/scripts/git-guard-wizard.js --set key1=on,key2=off,...
+```
+
+### Step 4: Confirm
+
+Show the saved configuration to the user.
