@@ -3,7 +3,7 @@
   "version": "0.1.5",
   "description": "Claude Code stress reducer — dangerous command warnings, env-guard, git-guard, usage stats, and plugin security scanning",
   "author": "cc-bridle contributors",
-  "repository": "https://github.com/your-org/cc-bridle",
+  "repository": "https://github.com/rozwer/cc-bridle",
   "license": "MIT",
   "hooks_path": "hooks/hooks.json",
   "skills_path": "skills/",
