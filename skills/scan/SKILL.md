@@ -1,14 +1,14 @@
 ---
-name: cc-bridle scan
+name: scan
 description: Security scan SKILL.md files. Two-phase: static pattern matching + AI contextual review.
 triggers:
-  - /cc-bridle scan <path>
+  - scan <path>
   - user asks to scan a plugin or skill for security issues
 ---
 
 ## Usage
 
-`/cc-bridle scan <path>` — path can be a single SKILL.md or a directory.
+`scan <path>` — path can be a single SKILL.md or a directory.
 
 ## Phase 1: Static Scan
 

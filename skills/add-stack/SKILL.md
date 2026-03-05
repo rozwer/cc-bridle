@@ -1,8 +1,8 @@
 ---
-name: cc-bridle add-stack
+name: add-stack
 description: Add a custom stack detection rule to detect-rules-extra.json for this project or globally.
 triggers:
-  - /cc-bridle add-stack <stack-id>
+  - add-stack <stack-id>
   - user asks to detect a new stack or project type
 ---
 

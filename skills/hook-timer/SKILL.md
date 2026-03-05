@@ -1,8 +1,8 @@
 ---
-name: cc-bridle hook-timer
+name: hook-timer
 description: Show hook execution timing from hook-timer.jsonl. Highlights slow hooks over 500ms.
 triggers:
-  - /cc-bridle hook-timer
+  - hook-timer
   - user mentions slow hooks, hook performance, パフォーマンス
 ---
 

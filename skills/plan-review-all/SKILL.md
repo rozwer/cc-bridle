@@ -1,8 +1,8 @@
 ---
-name: cc-bridle plan-review-all
+name: plan-review-all
 description: Review all phases from Plans.md in priority order (Required first, then Recommended).
 triggers:
-  - /cc-bridle plan-review-all
+  - plan-review-all
 ---
 
 ## What this skill does

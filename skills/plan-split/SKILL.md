@@ -1,8 +1,8 @@
 ---
-name: cc-bridle plan-split
+name: plan-split
 description: Auto-split Plans.md into individual phase-N.md files in docs/plans/. Only creates files that don't exist yet.
 triggers:
-  - /cc-bridle plan-split
+  - plan-split
   - user asks to split Plans.md
   - user says "フェーズファイルを作って" or "Plans.md を分割して"
 ---

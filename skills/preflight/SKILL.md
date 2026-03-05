@@ -1,8 +1,8 @@
 ---
-name: cc-bridle preflight
+name: preflight
 description: Run preflight safety check. Reads CLAUDE.md and Plans.md to list permissions and flag dangerous commands.
 triggers:
-  - /cc-bridle preflight
+  - preflight
   - user asks for preflight check
 ---
 

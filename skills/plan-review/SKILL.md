@@ -1,8 +1,8 @@
 ---
-name: cc-bridle plan-review
+name: plan-review
 description: Review a phase plan interactively, explaining each task and asking for confirmation.
 triggers:
-  - /cc-bridle plan-review [phase-N.md]
+  - plan-review [phase-N.md]
   - user asks to review requirements
   - user says "要件を確認して" or "これでよいか確認しながら進めて"
 ---

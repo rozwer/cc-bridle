@@ -1,8 +1,8 @@
 ---
-name: cc-bridle githooks
+name: githooks
 description: Configure Claude Code-specific git guards via interactive wizard.
 triggers:
-  - /cc-bridle githooks
+  - githooks
   - user asks to configure git protection for Claude Code
 ---
 

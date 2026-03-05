@@ -1,8 +1,8 @@
 ---
-name: cc-bridle stats
+name: stats
 description: Show usage statistics from stats.jsonl — tool/skill usage counts, top 5, and optimization suggestions.
 triggers:
-  - /cc-bridle stats
+  - stats
   - user mentions statistics, stats, 使用状況, usage
 ---
 
