@@ -2,29 +2,13 @@
   "name": "cc-bridle",
   "version": "0.1.5",
   "description": "Claude Code stress reducer — dangerous command warnings, env-guard, git-guard, usage stats, and plugin security scanning",
-  "author": "cc-bridle contributors",
+  "author": {
+    "name": "rozwer",
+    "url": "https://github.com/rozwer"
+  },
   "repository": "https://github.com/rozwer/cc-bridle",
   "license": "MIT",
-  "hooks_path": "hooks/hooks.json",
-  "skills_path": "skills/",
-  "min_claude_version": "1.0.0",
   "keywords": ["claude-code", "plugin", "safety", "stress-reducer"],
-  "skills": [
-    "preflight",
-    "stats",
-    "hook-timer",
-    "scan",
-    "githooks",
-    "add-stack",
-    "plan-split",
-    "plan-review",
-    "plan-review-all"
-  ],
-  "hooks": {
-    "PreToolUse": "hooks/pre-tool.sh (Bash) — chains env-guard → git-guard → danger-label",
-    "PostToolUse": "hooks/post-tool.sh (.*) — chains stats → hook-timer",
-    "SessionStart": "hooks/session.sh",
-    "Setup": "hooks/session.sh"
-  },
-  "install_command": "bash scripts/init.sh"
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
 }

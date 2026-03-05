@@ -2,23 +2,43 @@
   "PreToolUse": [
     {
       "matcher": "Bash",
-      "command": "hooks/pre-tool.sh"
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool.sh"
+        }
+      ]
     }
   ],
   "PostToolUse": [
     {
       "matcher": ".*",
-      "command": "hooks/post-tool.sh"
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/post-tool.sh"
+        }
+      ]
     }
   ],
   "SessionStart": [
     {
-      "command": "hooks/session.sh"
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/session.sh"
+        }
+      ]
     }
   ],
   "Setup": [
     {
-      "command": "hooks/session.sh"
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/session.sh"
+        }
+      ]
     }
   ]
 }
