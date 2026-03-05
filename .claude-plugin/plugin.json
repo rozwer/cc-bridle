@@ -9,6 +9,5 @@
   "repository": "https://github.com/rozwer/cc-bridle",
   "license": "MIT",
   "keywords": ["claude-code", "plugin", "safety", "stress-reducer"],
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks.json"
+  "skills": "./skills/"
 }
