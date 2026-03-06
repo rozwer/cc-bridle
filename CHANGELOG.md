@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-06
+
+### Changed
+
+- **Multi-language plugin restructuring**: Moved from single root-level plugin to two independent plugins under `plugins/cc-bridle/` (English) and `plugins/cc-bridle-ja/` (Japanese).
+- **marketplace.json**: Updated to reference both plugins.
+- **Removed**: Root-level `skills/`, `plugin.json`, and `hooks.json` — each plugin now carries its own full directory structure.
+
+### Added
+
+- **plugins/cc-bridle-ja/**: Full Japanese translation of all 9 SKILL.md files with English `name` fields preserved for plugin system compatibility.
+
 ## [0.1.5] - 2026-03-05
 
 ### Added

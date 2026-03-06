@@ -1,0 +1,16 @@
+[
+  {"id":"python-uv","files_all":["pyproject.toml","uv.lock"],"files_any":[],"files_none":[]},
+  {"id":"python-poetry","files_all":["pyproject.toml","poetry.lock"],"files_any":[],"files_none":["uv.lock"]},
+  {"id":"python-pip","files_all":["requirements.txt"],"files_any":[],"files_none":["uv.lock","poetry.lock"]},
+  {"id":"node-bun","files_all":["package.json","bun.lockb"],"files_any":[],"files_none":[]},
+  {"id":"node-pnpm","files_all":["package.json","pnpm-lock.yaml"],"files_any":[],"files_none":[]},
+  {"id":"node-yarn","files_all":["package.json","yarn.lock"],"files_any":[],"files_none":[]},
+  {"id":"node-npm","files_all":["package.json","package-lock.json"],"files_any":[],"files_none":[]},
+  {"id":"rust","files_all":["Cargo.toml"],"files_any":[],"files_none":[]},
+  {"id":"go","files_all":["go.mod"],"files_any":[],"files_none":[]},
+  {"id":"docker","files_all":["Dockerfile"],"files_any":[],"files_none":[]},
+  {"id":"ruby","files_all":["Gemfile"],"files_any":[],"files_none":[]},
+  {"id":"php","files_all":["composer.json"],"files_any":[],"files_none":[]},
+  {"id":"java","files_all":[],"files_any":["pom.xml","build.gradle"],"files_none":[]},
+  {"id":"swift","files_all":["Package.swift"],"files_any":[],"files_none":[]}
+]

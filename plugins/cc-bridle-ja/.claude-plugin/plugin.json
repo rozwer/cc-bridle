@@ -1,0 +1,13 @@
+{
+  "name": "cc-bridle-ja",
+  "version": "0.3.0",
+  "description": "Claude Code ストレス軽減プラグイン — 危険コマンド警告、環境ガード、gitガード、使用統計、プラグインセキュリティスキャン（日本語版）",
+  "author": {
+    "name": "rozwer",
+    "url": "https://github.com/rozwer"
+  },
+  "repository": "https://github.com/rozwer/cc-bridle",
+  "license": "MIT",
+  "keywords": ["claude-code", "plugin", "safety", "stress-reducer", "japanese"],
+  "skills": "./skills/"
+}

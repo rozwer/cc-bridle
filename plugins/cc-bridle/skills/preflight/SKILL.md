@@ -6,4 +6,4 @@ triggers:
   - user asks for preflight check
 ---
 
-Run `node scripts/preflight.js` from the project root and display the results.
+Run `node ${CLAUDE_PLUGIN_ROOT}/scripts/preflight.js` from the project root and display the results.

@@ -1,0 +1,27 @@
+{
+  "python-uv": {
+    "wrong": ["pip\\s+install\\s+(.+)", "pip3\\s+install\\s+(.+)"],
+    "suggest": "uv add $1",
+    "message": "このプロジェクトは uv を使用しています"
+  },
+  "python-poetry": {
+    "wrong": ["pip\\s+install\\s+(.+)", "pip3\\s+install\\s+(.+)"],
+    "suggest": "poetry add $1",
+    "message": "このプロジェクトは poetry を使用しています"
+  },
+  "node-bun": {
+    "wrong": ["npm\\s+install(.*)", "npm\\s+run\\s+(.+)", "npm\\s+i\\s+(.*)"],
+    "suggest": "bun install / bun run $1",
+    "message": "このプロジェクトは bun を使用しています"
+  },
+  "node-pnpm": {
+    "wrong": ["npm\\s+install(.*)", "npm\\s+i\\s+(.*)"],
+    "suggest": "pnpm install",
+    "message": "このプロジェクトは pnpm を使用しています"
+  },
+  "node-yarn": {
+    "wrong": ["npm\\s+install(.*)", "npm\\s+i\\s+(.*)"],
+    "suggest": "yarn install",
+    "message": "このプロジェクトは yarn を使用しています"
+  }
+}

@@ -5,14 +5,23 @@
   },
   "metadata": {
     "description": "Claude Code stress reducer — dangerous command warnings, env-guard, git-guard, usage stats, and plugin security scanning",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "cc-bridle",
-      "source": "./",
-      "description": "Claude Code stress reducer — dangerous command warnings, env-guard, git-guard, usage stats, and plugin security scanning",
-      "version": "0.2.0",
+      "source": "./plugins/cc-bridle",
+      "description": "Claude Code stress reducer — dangerous command warnings, env-guard, git-guard, usage stats, and plugin security scanning (English)",
+      "version": "0.3.0",
+      "author": {
+        "name": "rozwer"
+      }
+    },
+    {
+      "name": "cc-bridle-ja",
+      "source": "./plugins/cc-bridle-ja",
+      "description": "Claude Code ストレス軽減プラグイン — 危険コマンド警告、環境ガード、gitガード、使用統計、セキュリティスキャン（日本語版）",
+      "version": "0.3.0",
       "author": {
         "name": "rozwer"
       }

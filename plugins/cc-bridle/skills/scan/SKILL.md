@@ -12,7 +12,7 @@ triggers:
 
 ## Phase 1: Static Scan
 
-Run `node scripts/skill-scan.js <path>` and display results.
+Run `node ${CLAUDE_PLUGIN_ROOT}/scripts/skill-scan.js <path>` and display results.
 
 Severity levels:
 - 🔴 HIGH: Shell injection (backtick/$()) / eval/exec / credential access patterns
@@ -31,7 +31,7 @@ Report findings as additional comments below the static scan output.
 
 ## Exit Codes
 
-`node scripts/skill-scan.js` exits with:
+`node ${CLAUDE_PLUGIN_ROOT}/scripts/skill-scan.js` exits with:
 - **0** — no issues, or only LOW-severity findings (informational)
 - **1** — one or more HIGH or MEDIUM findings detected (CI gate failure)
 - **1** — path not found or unreadable
