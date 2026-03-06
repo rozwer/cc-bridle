@@ -23,12 +23,12 @@ try {
 }
 
 // If tool is not Bash, passthrough
-if (!input || input.tool !== 'Bash') {
+if (!input || input.tool_name !== 'Bash') {
   process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
-const command = (input.input && input.input.command) ? input.input.command : '';
+const command = (input.tool_input && input.tool_input.command) ? input.tool_input.command : '';
 
 // Load env.json for current project
 const cwdHash = crypto.createHash('md5').update(process.cwd()).digest('hex').slice(0, 8);

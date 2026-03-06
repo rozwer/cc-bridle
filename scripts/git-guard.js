@@ -23,8 +23,8 @@ process.stdin.on('end', () => {
   let parsed;
   try { parsed = JSON.parse(input); } catch (e) { allow(); return; }
 
-  const { tool, input: toolInput } = parsed;
-  if (tool !== 'Bash') { allow(); return; }
+  const { tool_name, tool_input: toolInput } = parsed;
+  if (tool_name !== 'Bash') { allow(); return; }
 
   const command = (toolInput && toolInput.command) || '';
 

@@ -28,8 +28,8 @@ function main() {
   }
 
   // Extract fields
-  const tool = input.tool || null;
-  const inputData = input.input || {};
+  const tool = input.tool_name || input.tool || null;
+  const inputData = input.tool_input || input.input || {};
   const output = input.output || {};
 
   // skill: captured from Skill tool invocations (tool === 'Skill') or Agent tool

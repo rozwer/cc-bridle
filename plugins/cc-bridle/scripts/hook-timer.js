@@ -35,7 +35,7 @@ function main() {
   const end = Date.now();
   const duration_ms = end - start;
 
-  const tool = input.tool || null;
+  const tool = input.tool_name || input.tool || null;
 
   // Read config for threshold
   const configFile = path.join(os.homedir(), '.claude', 'cc-bridle', 'config.json');

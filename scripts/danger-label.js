@@ -23,12 +23,12 @@ try {
 }
 
 // If tool is not Bash, passthrough
-if (!input || input.tool !== 'Bash') {
+if (!input || input.tool_name !== 'Bash') {
   process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
-const command = (input.input && input.input.command) ? input.input.command : '';
+const command = (input.tool_input && input.tool_input.command) ? input.tool_input.command : '';
 
 // Load global danger-dict.json (relative to __dirname = scripts/)
 const globalDictPath = path.join(__dirname, 'danger-dict.json');
