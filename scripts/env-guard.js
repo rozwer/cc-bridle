@@ -18,13 +18,11 @@ let input;
 try {
   input = JSON.parse(raw);
 } catch (e) {
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
 // If tool is not Bash, passthrough
 if (!input || input.tool_name !== 'Bash') {
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
@@ -39,14 +37,12 @@ try {
   envData = JSON.parse(fs.readFileSync(envPath, 'utf8'));
 } catch (e) {
   // env.json missing or invalid - allow passthrough
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
 const stack = (envData && Array.isArray(envData.stack)) ? envData.stack : [];
 
 if (stack.length === 0) {
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
@@ -57,7 +53,6 @@ try {
   redirectRules = JSON.parse(fs.readFileSync(redirectRulesPath, 'utf8'));
 } catch (e) {
   // If we cannot load rules, allow
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
@@ -101,5 +96,4 @@ for (const stackId of stack) {
 }
 
 // No match - allow
-process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
 process.exit(0);

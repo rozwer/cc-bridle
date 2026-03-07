@@ -18,13 +18,11 @@ let input;
 try {
   input = JSON.parse(raw);
 } catch (e) {
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
 // If tool is not Bash, passthrough
 if (!input || input.tool_name !== 'Bash') {
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
@@ -88,5 +86,4 @@ for (const patternStr of warningPatterns) {
 }
 
 // No match
-process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
 process.exit(0);

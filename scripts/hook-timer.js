@@ -50,12 +50,8 @@ function main() {
     // Use default threshold
   }
 
-  // Warn if slow
-  if (duration_ms > threshold) {
-    process.stderr.write(
-      `\u26A0\uFE0F HOOK SLOW: ${hookName} \u304C ${duration_ms}ms \u304B\u304B\u3063\u3066\u3044\u307E\u3059\uFF08\u9596\u5024: ${threshold}ms\uFF09\n`
-    );
-  }
+  // Note: slow hook warnings are recorded in hook-timer.jsonl only (no stderr output)
+  // to avoid triggering Claude Code "hook error" labels
 
   // mkdir -p ~/.claude/cc-bridle/
   const dir = path.join(os.homedir(), '.claude', 'cc-bridle');
@@ -69,6 +65,7 @@ function main() {
     hook_name: hookName,
     tool,
     duration_ms,
+    slow: duration_ms > threshold,
     timestamp: new Date().toISOString(),
   };
 
@@ -79,8 +76,6 @@ function main() {
     // Never block on write failure
   }
 
-  // Output allow action
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 

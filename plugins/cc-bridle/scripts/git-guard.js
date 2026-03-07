@@ -7,7 +7,6 @@ const os = require('os');
 const CONFIG_PATH = path.join(os.homedir(), '.claude', 'cc-bridle', 'config.json');
 
 function allow() {
-  process.stdout.write(JSON.stringify({ action: 'allow' }) + '\n');
   process.exit(0);
 }
 
