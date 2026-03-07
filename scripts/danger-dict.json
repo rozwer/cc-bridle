@@ -1,0 +1,27 @@
+{
+  "critical": [
+    "rm\\s+-rf",
+    "rm\\s+-fr",
+    "rm\\s+-r\\s+-f",
+    "rm\\s+-f\\s+-r",
+    "rm\\s+[^;&|\\n]*--recursive",
+    "git\\s+push\\b[^;&|\\n]*--force",
+    "git\\s+push\\b[^;&|\\n]*\\s-f\\b",
+    "DROP\\s+TABLE",
+    "DROP\\s+DATABASE",
+    "DROP\\s+SCHEMA",
+    "TRUNCATE\\s+TABLE",
+    "dd\\s+if=",
+    "\\bmkfs\\b",
+    "chmod\\s+-R\\s+777",
+    "chown\\s+-R"
+  ],
+  "warning": [
+    "rm\\s+-r\\b",
+    "git\\s+reset\\s+--hard",
+    "git\\s+clean\\s+-f",
+    "git\\s+stash\\s+drop",
+    "npm\\s+publish",
+    "pip\\s+install\\s+--force-reinstall"
+  ]
+}
