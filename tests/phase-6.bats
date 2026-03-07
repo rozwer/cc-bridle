@@ -21,7 +21,8 @@ EOF
 @test "6.0.2a force push blocked when guard enabled" {
   write_config '{"block_force_push":true}'
   run bash -c 'echo '"'"'{"tool":"Bash","input":{"command":"git push origin main --force"}}'"'"' | HOME='"$TMP_HOME"' node '"$REPO_ROOT"'/scripts/git-guard.js'
-  [ "$status" -eq 2 ]
+  [ "$status" -eq 0 ]
+  echo "$output" | grep -q '"permissionDecision":"deny"'
   echo "$output" | grep -q "GIT GUARD"
 }
 
@@ -29,20 +30,21 @@ EOF
   write_config '{"block_force_push":false}'
   run bash -c 'echo '"'"'{"tool":"Bash","input":{"command":"git push origin main --force"}}'"'"' | HOME='"$TMP_HOME"' node '"$REPO_ROOT"'/scripts/git-guard.js'
   [ "$status" -eq 0 ]
-  echo "$output" | grep -q '"action":"allow"'
+  [ -z "$output" ]
 }
 
 @test "6.0.2c normal git push to main allowed when only force push guard active" {
   write_config '{"block_force_push":true,"block_push_main":false}'
   run bash -c 'echo '"'"'{"tool":"Bash","input":{"command":"git push origin main"}}'"'"' | HOME='"$TMP_HOME"' node '"$REPO_ROOT"'/scripts/git-guard.js'
   [ "$status" -eq 0 ]
-  echo "$output" | grep -q '"action":"allow"'
+  [ -z "$output" ]
 }
 
 @test "6.0.2d .env staging blocked when secret guard enabled" {
   write_config '{"block_secret_files":true}'
   run bash -c 'echo '"'"'{"tool":"Bash","input":{"command":"git add .env"}}'"'"' | HOME='"$TMP_HOME"' node '"$REPO_ROOT"'/scripts/git-guard.js'
-  [ "$status" -eq 2 ]
+  [ "$status" -eq 0 ]
+  echo "$output" | grep -q '"permissionDecision":"deny"'
 }
 
 @test "6.0.2e normal git commit allowed with all guards enabled" {
@@ -55,5 +57,5 @@ EOF
   write_config '{"block_force_push":true}'
   run bash -c 'echo '"'"'{"tool":"Bash","input":{"command":"ls -la"}}'"'"' | HOME='"$TMP_HOME"' node '"$REPO_ROOT"'/scripts/git-guard.js'
   [ "$status" -eq 0 ]
-  echo "$output" | grep -q '"action":"allow"'
+  [ -z "$output" ]
 }

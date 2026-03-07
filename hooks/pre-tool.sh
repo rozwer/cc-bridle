@@ -6,23 +6,21 @@ SCRIPT_DIR="$(cd "$(dirname "$0")/../scripts" && pwd)" 2>/dev/null || exit 0
 
 INPUT=$(cat 2>/dev/null) || INPUT=""
 
-# env-guard (blocking — exits 2 on match, 0 on allow)
+# env-guard (blocking — emits PreToolUse decision JSON on match)
 if [ -f "$SCRIPT_DIR/env-guard.js" ]; then
   GUARD_OUT=$(printf '%s\n' "$INPUT" | node "$SCRIPT_DIR/env-guard.js" 2>/dev/null)
-  GUARD_RC=$?
-  if [ $GUARD_RC -ne 0 ] && [ -n "$GUARD_OUT" ]; then
+  if [ -n "$GUARD_OUT" ]; then
     printf '%s\n' "$GUARD_OUT"
-    exit $GUARD_RC
+    exit 0
   fi
 fi
 
-# git-guard (blocking — exits 2 on match, 0 on allow)
+# git-guard (blocking — emits PreToolUse decision JSON on match)
 if [ -f "$SCRIPT_DIR/git-guard.js" ]; then
   GIT_GUARD_OUT=$(printf '%s\n' "$INPUT" | node "$SCRIPT_DIR/git-guard.js" 2>/dev/null)
-  GIT_RC=$?
-  if [ $GIT_RC -ne 0 ] && [ -n "$GIT_GUARD_OUT" ]; then
+  if [ -n "$GIT_GUARD_OUT" ]; then
     printf '%s\n' "$GIT_GUARD_OUT"
-    exit $GIT_RC
+    exit 0
   fi
 fi
 

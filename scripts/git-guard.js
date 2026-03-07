@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const { emitPreToolDecision, parseHookInput } = require('./hook-utils');
 
 const CONFIG_PATH = path.join(os.homedir(), '.claude', 'cc-bridle', 'config.json');
 
@@ -11,19 +12,16 @@ function allow() {
 }
 
 function block(message) {
-  process.stdout.write(JSON.stringify({ action: 'block', message }) + '\n');
-  process.exit(2);
+  emitPreToolDecision('deny', message, 'block');
+  process.exit(0);
 }
 
 let input = '';
 process.stdin.setEncoding('utf8');
 process.stdin.on('data', chunk => { input += chunk; });
 process.stdin.on('end', () => {
-  let parsed;
-  try { parsed = JSON.parse(input); } catch (e) { allow(); return; }
-
-  const { tool_name, tool_input: toolInput } = parsed;
-  if (tool_name !== 'Bash') { allow(); return; }
+  const { toolName, toolInput } = parseHookInput(input);
+  if (toolName !== 'Bash') { allow(); return; }
 
   const command = (toolInput && toolInput.command) || '';
 

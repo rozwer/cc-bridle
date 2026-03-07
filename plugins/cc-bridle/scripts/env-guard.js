@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const os = require('os');
+const { emitPreToolDecision, parseHookInput } = require('./hook-utils');
 
 // Read all stdin synchronously
 let raw = '';
@@ -14,22 +15,17 @@ try {
   raw = '';
 }
 
-let input;
-try {
-  input = JSON.parse(raw);
-} catch (e) {
-  process.exit(0);
-}
+const input = parseHookInput(raw);
 
 // If tool is not Bash, passthrough
-if (!input || input.tool_name !== 'Bash') {
+if (input.toolName !== 'Bash') {
   process.exit(0);
 }
 
-const command = (input.tool_input && input.tool_input.command) ? input.tool_input.command : '';
+const command = (input.toolInput && input.toolInput.command) ? input.toolInput.command : '';
 
 // Load env.json for current project
-const cwdHash = crypto.createHash('md5').update(process.cwd()).digest('hex').slice(0, 8);
+const cwdHash = crypto.createHash('md5').update(input.cwd).digest('hex').slice(0, 8);
 const envPath = path.join(os.homedir(), '.claude', 'cc-bridle', 'projects', cwdHash, 'env.json');
 
 let envData;
@@ -89,8 +85,8 @@ for (const stackId of stack) {
         '  \u5B9F\u884C\u30B3\u30DE\u30F3\u30C9: ' + command + '\n' +
         '  \u63A8\u5968\u30B3\u30DE\u30F3\u30C9: ' + suggestResolved;
 
-      process.stdout.write(JSON.stringify({ action: 'block', message: blockMessage }) + '\n');
-      process.exit(2);
+      emitPreToolDecision('deny', blockMessage, 'block');
+      process.exit(0);
     }
   }
 }
